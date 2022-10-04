@@ -1,5 +1,7 @@
 import { Route, Routes } from "react-router-dom";
+import Home from "./Home/Home";
 import Layout from "./Layout/Layout";
+// import { NavLink } from "react-router-dom";
 
 export const App = () => {
   return (
@@ -15,10 +17,18 @@ export const App = () => {
         color: '#010101'
       }}
     >
+
+            {/* <header>
+        <nav>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/movies">Movies</NavLink>
+
+        </nav>
+      </header> */}
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="home" element={<div> Home</div>}></Route>
-          <Route path="movies" element={<div> Movies</div>}></Route>
+          <Route index element={<Home/>} />
+          <Route path="movies" element={<div> Movies </div>}/>
 
       </Route>
       </Routes>

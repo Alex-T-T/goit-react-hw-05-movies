@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const navItems = [
-    { href: 'home', text: 'Home', icon: ImHome, },
+    { href: '/', text: 'Home', icon: ImHome, },
     { href: 'movies', text: 'Movies', icon: BiMoviePlay, }
 ]
 
@@ -22,7 +22,7 @@ color: #000;
     }
     :hover:not(.active),
     :focus-visible:not(.active) {
-        color: #000;
+        color: red;
     }
 `
 
@@ -38,7 +38,7 @@ const AppBar = () => {
         fontSize: 24,
         color: '#010101'
       }}>
-            {navItems.map(({ href, text, icon: Icon }) => <NavItem to={href} key={href}><Icon size={18}/>{ text}</NavItem> )}
+            {navItems.map(({ href, text, icon: Icon }) => <li key={href}><NavItem to={href} end><Icon size={18}/>{ text}</NavItem></li> )}
         </header>
     )
 }
