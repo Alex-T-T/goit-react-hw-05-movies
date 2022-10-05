@@ -1,9 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./Home/Home";
 import Layout from "./Layout/Layout";
+import MovieDetails from "./MovieDetails/MovieDetails";
+import Movies from "./Movies/Movies";
+import MoviesSearch from "./Movies/MoviesSearch";
+// import { useState } from "react";
 // import { NavLink } from "react-router-dom";
 
 export const App = () => {
+
   return (
     <div
       style={{
@@ -28,7 +33,10 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home/>} />
-          <Route path="movies" element={<div> Movies </div>}/>
+          <Route path="movies" element={<Movies />}>
+            <Route path="search" element={ <MoviesSearch/>} />
+          </Route>
+          <Route path="movies/:movieId" element={<MovieDetails/>} />
 
       </Route>
       </Routes>
