@@ -27,11 +27,14 @@ const MovieDetails = () => {
     const { title, poster_path, popularity, overview, genres } = movie;
    
     const createPosterUrl = (poster_path) => {
-        const posterUrl = `https://www.themoviedb.org/t/p/w500${poster_path}`
+        const posterUrl = poster_path
+            ? `https://www.themoviedb.org/t/p/w500${poster_path}`
+            : 'https://klike.net/uploads/posts/2020-02/1581672920_6.jpg'
         return posterUrl
     } 
 
 
+console.log("genres =>", genres)
 
     return (
         <>
@@ -41,7 +44,7 @@ const MovieDetails = () => {
             <h2> Overview </h2>
             <p>{overview}</p>
             <h2> Genres </h2>
-            {/* <p>{ genres}</p> */}
+            {genres && <p>{ genres.map(({name}) => name ).join(', ')}</p>}
 
             <ul>
             <NavLink to="cast" > Cast</NavLink>

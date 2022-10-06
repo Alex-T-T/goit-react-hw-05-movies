@@ -5,6 +5,7 @@ import Layout from "./Layout/Layout";
 import MovieDetails from "./MovieDetails/MovieDetails";
 import Movies from "./Movies/Movies";
 import MoviesSearch from "./Movies/MoviesSearch";
+import Reviews from "./Reviews/Reviews";
 // import { useState } from "react";
 // import { NavLink } from "react-router-dom";
 
@@ -38,7 +39,7 @@ export const App = () => {
             <Route path="search" element={ <MoviesSearch/>} />
           </Route>
           <Route path="movies/:movieId" element={<MovieDetails />}>
-            <Route path="reviews" element={<div>It is Review</div>} />
+            <Route path="reviews" element={<Reviews/>} />
             <Route path="cast" element={ <Cast/>} />
           </Route>
 
