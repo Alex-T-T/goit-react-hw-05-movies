@@ -36,7 +36,8 @@ const AppBar = () => {
         display: 'flex',
         borderBottom: '2px solid black',
         fontSize: 24,
-        color: '#010101'
+        color: '#010101',
+        marginBottom: '20px',
       }}>
             {navItems.map(({ href, text, icon: Icon }) => <li key={href}><NavItem to={href} end><Icon size={18}/>{ text}</NavItem></li> )}
         </header>
