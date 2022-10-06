@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, Outlet, useParams } from "react-router-dom";
 
 
 const fetchMovieById = async (id) => {
@@ -27,11 +27,11 @@ const MovieDetails = () => {
     const { title, poster_path, popularity, overview, genres } = movie;
    
     const createPosterUrl = (poster_path) => {
-        const posterUrl = `https://www.themoviedb.org/t/p/w500/${poster_path}`
+        const posterUrl = `https://www.themoviedb.org/t/p/w500${poster_path}`
         return posterUrl
     } 
 
-    
+
 
     return (
         <>
@@ -42,6 +42,12 @@ const MovieDetails = () => {
             <p>{overview}</p>
             <h2> Genres </h2>
             {/* <p>{ genres}</p> */}
+
+            <ul>
+            <NavLink to="cast" > Cast</NavLink>
+            <NavLink to="reviews" > Review</NavLink>
+            </ul>
+            <Outlet/>
         </>
     )
 }
