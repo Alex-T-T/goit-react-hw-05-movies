@@ -40,9 +40,9 @@ const Cast = () => {
     } 
 
     return (<ul>
-        {cast.map(({profile_path, original_name, character}) =>{
+        {cast.map(({id, profile_path, original_name, character}) =>{
         return (
-            <li key={original_name}>
+            <li key={id}>
                 <img src={createProfileUrl(profile_path)} alt={original_name} width='90'/>
                 <p>{original_name}</p>
                 <p> Character: { character}</p>

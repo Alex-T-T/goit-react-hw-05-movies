@@ -4,13 +4,9 @@ const MoviesSearch = ({onFormSubmit}) => {
 const [searchQuery, setSearchQuery] = useState('');
 
 const handleChange = (event) => {
-        console.log(event.target.value)
+    console.log('event.target.value =>', event.target.value)
 
-        if (event.target.value.trim() === '') {
-            return
-        }
-        
-        setSearchQuery(event.target.value)
+    setSearchQuery(event.target.value)
     }
 
 

@@ -1,8 +1,9 @@
-import { useState} from "react"
-import { NavLink } from "react-router-dom";
+import { useState, useEffect} from "react"
+import { NavLink, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import MoviesSearch from "./MoviesSearch";
 import { useSearchParams } from "react-router-dom";
+// import {TiArrowBack} from 'react-icons/ti'
 
 // styles for NavLink
 const NavItem = styled(NavLink)`
@@ -34,27 +35,55 @@ const fetchSearchMovies = async (searchQuery) => {
 
 const Movies = () => {
 
-    const [movies, setMovies] = useState(null);
+    const [movies, setMovies] = useState(JSON.parse(window.localStorage.getItem('movies')) ?? null);
+    // const [movies, setMovies] = useState(null);
+
+    const [value, setValue] = useState('')
     const [searchParams, setSearchParams] = useSearchParams();
+    const location = useLocation();
+    const filter = searchParams.get('query') ?? '';
+    console.log('filter =>', filter);
 
-    const onFormSubmit = (value) => {
+    useEffect(() => {
         
-        setSearchParams(value !== '' ? { query: value } : {})
+        // console.log(movies)
+        // console.log('Refresh movies')
+        window.localStorage.setItem('movies', JSON.stringify(movies))
 
+    }, [movies])
+
+    useEffect(() => {
+        if (value === '') {
+            return
+        }
         fetchSearchMovies(value)
             .then(setMovies)
+            .catch(error => {
+                Promise.reject(new Error(`${error.message}`))
+            })
+    }, [value])
+
+    const onFormSubmit = (searchValue) => {
+            if (searchValue === value) {
+        alert("Enter new search value!");
+        return
+        }
+        setValue(searchValue)
+        setMovies(null)
+        setSearchParams(searchValue !== '' ? { query: searchValue } : {})
     }
 
     return (
         <>
-        <MoviesSearch onFormSubmit={ onFormSubmit} />
+            <MoviesSearch onFormSubmit={ onFormSubmit} />
 
-        {movies && <ul>
-            {movies.results.map(({id, title}) => {
-                return <li key={id}><NavItem to={`${id}`} end> {title }</NavItem></li>
-            })}
-            </ul>}
-            
+            {movies && <ul>
+                {movies.results.length !== 0
+                    ? movies.results.map(({ id, title }) => {
+                        return <li key={id}><NavItem to={`${id}`} state={{from: location}} end> {title }</NavItem></li>
+                    })
+                    : <p>Change your request</p>}
+                </ul>}
         </>
     )
 }

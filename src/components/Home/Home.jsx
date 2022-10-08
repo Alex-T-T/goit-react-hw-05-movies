@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 
@@ -31,8 +31,8 @@ const fetchMovies = async () => {
 
 
 const Home = () => {
-    const [ movies, setMovies ] = useState(null)
-
+    const [movies, setMovies] = useState(null);
+    const location = useLocation();
 
     useEffect(() => {
         
@@ -47,7 +47,7 @@ const Home = () => {
         // console.log(movies)
         movies && <ul>
             {movies.results.map(({id, title}) => {
-                return <li key={id}> <NavItem to={`movies/${id}`}>{title }</NavItem></li>
+                return <li key={id}> <NavItem to={`movies/${id}`}  state={{from: location}}>{title }</NavItem></li>
             })}
         </ul>
     )

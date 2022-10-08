@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import { NavLink, Outlet, useParams, useLocation} from "react-router-dom";
+import {TiArrowBack} from 'react-icons/ti'
+
 
 
 const fetchMovieById = async (id) => {
@@ -13,11 +15,12 @@ const fetchMovieById = async (id) => {
 
 const MovieDetails = () => {
     const [movie, setMovie] = useState({});
-    const {movieId} = useParams();
+    const { movieId } = useParams();
+    const  location = useLocation();
         
     useEffect(() => {
         
-        fetchMovieById(movieId)
+        fetchMovieById(Number(movieId))
             .then(setMovie)
         .catch(error => {
         Promise.reject(new Error(`${error.message}`))
@@ -34,10 +37,11 @@ const MovieDetails = () => {
     } 
 
 
-console.log("genres =>", genres)
+    console.log("location =>", location)
 
     return (
         <>
+            <NavLink to={location.state.from} end> <TiArrowBack/>Go Back</NavLink>
             <img src={createPosterUrl(poster_path)} alt={ title} width='240'/>
             <h2>{title}</h2>
             <p>{popularity}</p>
@@ -47,8 +51,8 @@ console.log("genres =>", genres)
             {genres && <p>{ genres.map(({name}) => name ).join(', ')}</p>}
 
             <ul>
-            <NavLink to="cast" > Cast</NavLink>
-            <NavLink to="reviews" > Review</NavLink>
+            <NavLink to="cast" state={{from: location.state.from}} end> Cast</NavLink>
+            <NavLink to="reviews" state={{from: location.state.from}} end> Review</NavLink>
             </ul>
             <Outlet/>
         </>
