@@ -41,7 +41,7 @@ const MovieDetails = () => {
 
     return (
         <>
-            <NavLink to={location.state.from} end> <TiArrowBack/>Go Back</NavLink>
+            <NavLink to={location.state?.from ?? '/movies'} end> <TiArrowBack/>Go Back</NavLink>
             <img src={createPosterUrl(poster_path)} alt={ title} width='240'/>
             <h2>{title}</h2>
             <p>{popularity}</p>
@@ -51,8 +51,8 @@ const MovieDetails = () => {
             {genres && <p>{ genres.map(({name}) => name ).join(', ')}</p>}
 
             <ul>
-            <NavLink to="cast" state={{from: location.state.from}} end> Cast</NavLink>
-            <NavLink to="reviews" state={{from: location.state.from}} end> Review</NavLink>
+            <NavLink to="cast" state={{from: location.state?.from ?? '/movies'}} end> Cast</NavLink>
+            <NavLink to="reviews" state={{from: location.state?.from ?? '/movies'}} end> Review</NavLink>
             </ul>
             <Outlet/>
         </>

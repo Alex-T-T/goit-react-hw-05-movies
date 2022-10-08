@@ -1,13 +1,20 @@
+import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import Cast from "./Cast/Cast";
+// import Cast from "./Cast/Cast";
 import Home from "./Home/Home";
 import Layout from "./Layout/Layout";
-import MovieDetails from "./MovieDetails/MovieDetails";
-import Movies from "./Movies/Movies";
+// import MovieDetails from "./MovieDetails/MovieDetails";
+// import Movies from "./Movies/Movies";
 import MoviesSearch from "./Movies/MoviesSearch";
-import Reviews from "./Reviews/Reviews";
+// import Reviews from "./Reviews/Reviews";
 // import { useState } from "react";
 // import { NavLink } from "react-router-dom";
+
+const Movies = lazy(() => import("./Movies/Movies"));
+const MovieDetails = lazy(() => import('./MovieDetails/MovieDetails'));
+const Reviews = lazy(()=> import('./Reviews/Reviews'))
+const Cast = lazy(()=> import("./Cast/Cast"))
+
 
 export const App = () => {
 
