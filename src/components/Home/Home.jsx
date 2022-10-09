@@ -1,23 +1,7 @@
 import { useState, useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import styled from "styled-components";
-
-
-// styles for NavLink
-const NavItem = styled(NavLink)`
-display: block;
-width: 300px;
-padding: 8px;
-border-radius: 4px;
-text-decoration: none;
-color: #000;
-
-    :hover,
-    :focus-visible {
-        color: #fff;
-        background: linear-gradient(to right, #1488cc, #2b32b2);
-    }
-`
+import { useLocation } from "react-router-dom";
+import { Dna } from 'react-loader-spinner';
+import { NavItem, Container } from "./Home.styled";
 
 const fetchMovies = async () => {
     const API_KEY = '85df3ff8d6dde44e5fe9194c59be3b9a';
@@ -28,28 +12,37 @@ const fetchMovies = async () => {
             return Promise.reject(new Error(`We have a problem`))
         }
 
-
-
 const Home = () => {
     const [movies, setMovies] = useState(null);
+    const [isLoading, setIsLoading] = useState(false)
     const location = useLocation();
 
     useEffect(() => {
         
+        setIsLoading(true)
+
         fetchMovies()
-            .then(setMovies)
+            .then((response) => {
+                setMovies(response);
+                setIsLoading(false);
+            })
         .catch(error => {
         Promise.reject(new Error(`${error.message}`))
     } )
     }, [])
     
     return (
-        // console.log(movies)
-        movies && <ul>
+        <Container>
+            {isLoading && <div>
+                <p>Loading... Please wait</p> 
+                    <Dna/> 
+            </div>}
+            {movies && <ul>
             {movies.results.map(({id, title}) => {
                 return <li key={id}> <NavItem to={`movies/${id}`}  state={{from: location}}>{title }</NavItem></li>
             })}
-        </ul>
+        </ul>}
+        </Container>
     )
 }
 

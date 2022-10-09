@@ -1,35 +1,34 @@
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 // import Cast from "./Cast/Cast";
-import Home from "./Home/Home";
-import Layout from "./Layout/Layout";
+import Home from "../Home/Home";
+import Layout from "../Layout/Layout";
 // import MovieDetails from "./MovieDetails/MovieDetails";
 // import Movies from "./Movies/Movies";
-import MoviesSearch from "./Movies/MoviesSearch";
+import MoviesSearch from "../Movies/MoviesSearch";
 // import Reviews from "./Reviews/Reviews";
 // import { useState } from "react";
 // import { NavLink } from "react-router-dom";
+import { Container } from "./App.styled";
 
-const Movies = lazy(() => import("./Movies/Movies"));
-const MovieDetails = lazy(() => import('./MovieDetails/MovieDetails'));
-const Reviews = lazy(()=> import('./Reviews/Reviews'))
-const Cast = lazy(()=> import("./Cast/Cast"))
+const Movies = lazy(() => import("../Movies/Movies"));
+const MovieDetails = lazy(() => import('../MovieDetails/MovieDetails'));
+const Reviews = lazy(()=> import('../Reviews/Reviews'))
+const Cast = lazy(()=> import("../Cast/Cast"))
 
 
 export const App = () => {
 
   return (
-    <div
-      style={{
+    <Container
+      // style={{
         
-        display: 'flex',
-        flexDirection: 'column',
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        padding: '30px',
-        fontSize: 24,
-        color: '#010101'
-      }}
+      //   display: 'flex',
+      //   flexDirection: 'column',
+      //   padding: '30px',
+      //   fontSize: 24,
+      //   color: '#010101'
+      // }}
     >
 
             {/* <header>
@@ -52,6 +51,6 @@ export const App = () => {
 
       </Route>
       </Routes>
-    </div>
+    </Container>
   );
 };

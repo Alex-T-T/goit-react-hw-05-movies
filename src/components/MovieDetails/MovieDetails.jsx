@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { NavLink, Outlet, useParams, useLocation} from "react-router-dom";
-import {TiArrowBack} from 'react-icons/ti'
-
-
+import { TiArrowBack } from 'react-icons/ti'
+import { Container, NavItem, Wrapper } from "./MovieDetails.styled";
+import { format } from 'date-fns'
 
 const fetchMovieById = async (id) => {
     const API_KEY = '85df3ff8d6dde44e5fe9194c59be3b9a';
@@ -16,10 +16,10 @@ const fetchMovieById = async (id) => {
 const MovieDetails = () => {
     const [movie, setMovie] = useState({});
     const { movieId } = useParams();
-    const  location = useLocation();
+    const location = useLocation();
+
         
     useEffect(() => {
-        
         fetchMovieById(Number(movieId))
             .then(setMovie)
         .catch(error => {
@@ -27,7 +27,7 @@ const MovieDetails = () => {
     } )
     }, [movieId])
 
-    const { title, poster_path, popularity, overview, genres } = movie;
+    const { title, poster_path, popularity, overview, genres, release_date } = movie;
    
     const createPosterUrl = (poster_path) => {
         const posterUrl = poster_path
@@ -36,20 +36,37 @@ const MovieDetails = () => {
         return posterUrl
     } 
 
+    const FormatDate = (date) => {
+        return  format(new Date(date), 'yyyy')
+    }
 
-    console.log("location =>", location)
+    const FormatedDate = (date) => {
+        
+        const finalDate = date
+            ?  FormatDate(date)
+            : '';
+        
+        return finalDate;
+    };
+
+    const date = FormatedDate(release_date)
+
+    console.log("FormatedDate =>", date);
 
     return (
         <>
-            <NavLink to={location.state?.from ?? '/movies'} end> <TiArrowBack/>Go Back</NavLink>
-            <img src={createPosterUrl(poster_path)} alt={ title} width='240'/>
-            <h2>{title}</h2>
-            <p>{popularity}</p>
-            <h2> Overview </h2>
-            <p>{overview}</p>
-            <h2> Genres </h2>
-            {genres && <p>{ genres.map(({name}) => name ).join(', ')}</p>}
-
+            <NavItem to={location.state?.from ?? '/movies'} end> <TiArrowBack/>Go Back</NavItem>
+            <Container>
+                <img src={createPosterUrl(poster_path)} alt={ title} width='240'/>
+                <Wrapper>
+                <h2>{title} ({date})</h2>
+                <p> User score: {popularity}</p>
+                <h2> Overview </h2>
+                <p>{overview}</p>
+                <h2> Genres </h2>
+                {genres && <p>{ genres.map(({name}) => name ).join(', ')}</p>}
+                </Wrapper>
+            </Container>
             <ul>
             <NavLink to="cast" state={{from: location.state?.from ?? '/movies'}} end> Cast</NavLink>
             <NavLink to="reviews" state={{from: location.state?.from ?? '/movies'}} end> Review</NavLink>

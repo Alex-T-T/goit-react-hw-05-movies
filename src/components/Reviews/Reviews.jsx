@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {RiErrorWarningLine} from 'react-icons/ri'
 
+
 const fetchRewiews = async (id) => {
     const API_KEY = '85df3ff8d6dde44e5fe9194c59be3b9a';
     const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${API_KEY}`)
@@ -14,7 +15,8 @@ const fetchRewiews = async (id) => {
 const Reviews = () => {
 
     const [response, setResponse] = useState(null)
-    const {movieId} = useParams();
+    const { movieId } = useParams();
+    
     
     useEffect(() => {
         fetchRewiews(Number(movieId))

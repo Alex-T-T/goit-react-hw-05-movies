@@ -1,27 +1,10 @@
 import { useState, useEffect} from "react"
-import { NavLink, useLocation } from "react-router-dom";
-import styled from "styled-components";
+import { useLocation } from "react-router-dom";
+
 import MoviesSearch from "./MoviesSearch";
 import { useSearchParams } from "react-router-dom";
 import { Dna } from 'react-loader-spinner';
-
-// import {TiArrowBack} from 'react-icons/ti'
-
-// styles for NavLink
-const NavItem = styled(NavLink)`
-display: block;
-width: 300px;
-padding: 8px;
-border-radius: 4px;
-text-decoration: none;
-color: #000;
-
-    :hover,
-    :focus-visible {
-        color: #fff;
-        background: linear-gradient(to right, #1488cc, #2b32b2);
-    }
-`
+import { NavItem } from "./Movies.styled";
 
 
 // Fetch to search movies
