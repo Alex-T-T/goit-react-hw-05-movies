@@ -3,6 +3,8 @@ import { NavLink, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import MoviesSearch from "./MoviesSearch";
 import { useSearchParams } from "react-router-dom";
+import { Dna } from 'react-loader-spinner';
+
 // import {TiArrowBack} from 'react-icons/ti'
 
 // styles for NavLink
@@ -38,7 +40,8 @@ const Movies = () => {
     const [movies, setMovies] = useState(JSON.parse(window.localStorage.getItem('movies')) ?? null);
     // const [movies, setMovies] = useState(null);
 
-    const [value, setValue] = useState('')
+    const [value, setValue] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
     const location = useLocation();
     const filter = searchParams.get('query') ?? '';
@@ -56,8 +59,14 @@ const Movies = () => {
         if (value === '') {
             return
         }
+
+        setIsLoading(true);
+
         fetchSearchMovies(value)
-            .then(setMovies)
+            .then((response) => {
+                setMovies(response)
+                setIsLoading(false)
+            })
             .catch(error => {
                 Promise.reject(new Error(`${error.message}`))
             })
@@ -76,7 +85,10 @@ const Movies = () => {
     return (
         <>
             <MoviesSearch onFormSubmit={ onFormSubmit} />
-
+            {isLoading && <div>
+                <p>Loading... Please wait</p> 
+                    <Dna/> 
+            </div>}
             {movies && <ul>
                 {movies.results.length !== 0
                     ? movies.results.map(({ id, title }) => {
