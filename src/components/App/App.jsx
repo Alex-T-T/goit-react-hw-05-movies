@@ -20,37 +20,24 @@ const Cast = lazy(()=> import("../Cast/Cast"))
 export const App = () => {
 
   return (
-    <Container
-      // style={{
-        
-      //   display: 'flex',
-      //   flexDirection: 'column',
-      //   padding: '30px',
-      //   fontSize: 24,
-      //   color: '#010101'
-      // }}
-    >
+    <Container>
 
-            {/* <header>
-        <nav>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/movies">Movies</NavLink>
-
-        </nav>
-      </header> */}
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home/>} />
+          <Route index element={<Home />} />
+          
           <Route path="movies" element={<Movies />}>
             <Route path="search" element={ <MoviesSearch/>} />
           </Route>
+
           <Route path="movies/:movieId" element={<MovieDetails />}>
             <Route path="reviews" element={<Reviews/>} />
             <Route path="cast" element={ <Cast/>} />
           </Route>
 
-      </Route>
+        </Route>
       </Routes>
+      
     </Container>
   );
 };

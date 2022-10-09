@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { Outlet, useParams, useLocation} from "react-router-dom";
 import { TiArrowBack } from 'react-icons/ti'
 import { Container, NavItem, Wrapper, Title, Text, AdditionalLinks } from "./MovieDetails.styled";
@@ -75,7 +75,10 @@ const MovieDetails = () => {
                 <NavItem to="cast" state={{from: location.state?.from ?? '/movies'}} end> Cast</NavItem>
                 <NavItem to="reviews" state={{from: location.state?.from ?? '/movies'}} end> Review</NavItem>
             </AdditionalLinks>
-            <Outlet/>
+
+            <Suspense fallback={null}>
+                <Outlet/>
+            </Suspense>
         </>
     )
 }
