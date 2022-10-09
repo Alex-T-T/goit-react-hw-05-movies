@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"; 
 import { useParams } from "react-router-dom";
+import { Container } from "./Cast.styled";
 
 const fetchCast = async (id) => {
     const API_KEY = '85df3ff8d6dde44e5fe9194c59be3b9a';
@@ -39,16 +40,18 @@ const Cast = () => {
         return posterUrl
     } 
 
-    return (<ul>
-        {cast.map(({id, profile_path, original_name, character}) =>{
+    return (<Container>
+        {cast.length !== 0 ? cast.map(({id, profile_path, original_name, character}) =>{
         return (
             <li key={id}>
                 <img src={createProfileUrl(profile_path)} alt={original_name} width='90'/>
                 <p>{original_name}</p>
                 <p> Character: { character}</p>
-            </li>)})
+                </li>)
+        })
+            : <p>We haven't info about cast!</p>
         }
-    </ul>)
+    </Container>)
 }
 
 export default Cast;

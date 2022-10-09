@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { NavLink, Outlet, useParams, useLocation} from "react-router-dom";
+import { Outlet, useParams, useLocation} from "react-router-dom";
 import { TiArrowBack } from 'react-icons/ti'
-import { Container, NavItem, Wrapper, Title, Text } from "./MovieDetails.styled";
+import { Container, NavItem, Wrapper, Title, Text, AdditionalLinks } from "./MovieDetails.styled";
 import { format } from 'date-fns'
 
 const fetchMovieById = async (id) => {
@@ -71,10 +71,10 @@ const MovieDetails = () => {
                 {genres && <Text>{ genres.map(({name}) => name ).join(', ')}</Text>}
                 </Wrapper>
             </Container>
-            <ul>
-            <NavLink to="cast" state={{from: location.state?.from ?? '/movies'}} end> Cast</NavLink>
-            <NavLink to="reviews" state={{from: location.state?.from ?? '/movies'}} end> Review</NavLink>
-            </ul>
+            <AdditionalLinks>
+                <NavItem to="cast" state={{from: location.state?.from ?? '/movies'}} end> Cast</NavItem>
+                <NavItem to="reviews" state={{from: location.state?.from ?? '/movies'}} end> Review</NavItem>
+            </AdditionalLinks>
             <Outlet/>
         </>
     )

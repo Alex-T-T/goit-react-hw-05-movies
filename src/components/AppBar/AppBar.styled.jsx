@@ -5,7 +5,8 @@ import { NavLink } from "react-router-dom";
 export const Header = styled('header')`
     display: flex;
     justify-content: space-evenly;
-    border-bottom: 2px solid black;
+    border-radius: 8px;
+    border-bottom: 2px solid blue;
     font-size: 32px;
     color: #010101;
     margin-bottom: 20px;

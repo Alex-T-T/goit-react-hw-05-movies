@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"; 
 import { useParams } from "react-router-dom";
 import {RiErrorWarningLine} from 'react-icons/ri'
-
+import { Title, Text, Item } from "./Reviews.styled";
 
 const fetchRewiews = async (id) => {
     const API_KEY = '85df3ff8d6dde44e5fe9194c59be3b9a';
@@ -40,10 +40,10 @@ const Reviews = () => {
         {results.length !== 0
             ? results.map(({ id, author, content }) => {
                 return (
-                    <li key={id}>
-                        <p>Author: {author}</p>
-                        <p> { content}</p>
-                        </li>
+                    <Item key={id}>
+                        <Title>Author: {author}</Title>
+                        <Text> { content}</Text>
+                    </Item>
                     )
                 })
             : <p> <RiErrorWarningLine/> Sorry, we haven`t reviews yet!</p>
