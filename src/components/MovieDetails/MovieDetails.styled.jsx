@@ -35,3 +35,11 @@ display: flex;
 flex-direction: column;
 margin-left: 30px;
 `
+
+export const Title = styled('h2')`
+margin-bottom: 10px;
+`
+
+export const Text = styled('p')`
+margin-bottom: 10px;
+`

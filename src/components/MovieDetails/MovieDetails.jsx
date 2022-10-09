@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink, Outlet, useParams, useLocation} from "react-router-dom";
 import { TiArrowBack } from 'react-icons/ti'
-import { Container, NavItem, Wrapper } from "./MovieDetails.styled";
+import { Container, NavItem, Wrapper, Title, Text } from "./MovieDetails.styled";
 import { format } from 'date-fns'
 
 const fetchMovieById = async (id) => {
@@ -27,7 +27,7 @@ const MovieDetails = () => {
     } )
     }, [movieId])
 
-    const { title, poster_path, popularity, overview, genres, release_date } = movie;
+    const { title, poster_path, vote_average, overview, genres, release_date } = movie;
    
     const createPosterUrl = (poster_path) => {
         const posterUrl = poster_path
@@ -36,20 +36,24 @@ const MovieDetails = () => {
         return posterUrl
     } 
 
-    const FormatDate = (date) => {
-        return  format(new Date(date), 'yyyy')
-    }
-
     const FormatedDate = (date) => {
-        
         const finalDate = date
-            ?  FormatDate(date)
+            ? `(${format(new Date(date), 'yyyy')})`
             : '';
-        
         return finalDate;
     };
 
     const date = FormatedDate(release_date)
+
+    const formatUserScore = (value) => {
+        const transformValue = (value * 10).toFixed(0); 
+        const userScore = value
+            ? `${transformValue}%`
+            : 'There is no user scores.';
+        return userScore
+    }
+
+    const userScores = formatUserScore(vote_average)
 
     console.log("FormatedDate =>", date);
 
@@ -59,12 +63,12 @@ const MovieDetails = () => {
             <Container>
                 <img src={createPosterUrl(poster_path)} alt={ title} width='240'/>
                 <Wrapper>
-                <h2>{title} ({date})</h2>
-                <p> User score: {popularity}</p>
-                <h2> Overview </h2>
-                <p>{overview}</p>
-                <h2> Genres </h2>
-                {genres && <p>{ genres.map(({name}) => name ).join(', ')}</p>}
+                <Title>{title} {date}</Title>
+                <Text> User score: {userScores}</Text>
+                <Title> Overview </Title>
+                <Text>{overview}</Text>
+                <Title> Genres </Title>
+                {genres && <Text>{ genres.map(({name}) => name ).join(', ')}</Text>}
                 </Wrapper>
             </Container>
             <ul>
