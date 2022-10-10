@@ -1,17 +1,17 @@
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 // import Cast from "./Cast/Cast";
-import Home from "../Home/Home";
+import Home from '../../pages/Home/Home';
 import Layout from "../Layout/Layout";
 // import MovieDetails from "./MovieDetails/MovieDetails";
 // import Movies from "./Movies/Movies";
-import MoviesSearch from "../Movies/MoviesSearch";
+import MoviesSearch from "../MoviesSearch/MoviesSearch";
 // import Reviews from "./Reviews/Reviews";
 // import { useState } from "react";
 // import { NavLink } from "react-router-dom";
 import { Container } from "./App.styled";
 
-const Movies = lazy(() => import("../Movies/Movies"));
+const Movies = lazy(() => import("../../pages/Movies/Movies"));
 const MovieDetails = lazy(() => import('../MovieDetails/MovieDetails'));
 const Reviews = lazy(()=> import('../Reviews/Reviews'))
 const Cast = lazy(()=> import("../Cast/Cast"))
@@ -37,7 +37,7 @@ export const App = () => {
 
         </Route>
       </Routes>
-      
+
     </Container>
   );
 };

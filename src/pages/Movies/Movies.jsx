@@ -1,10 +1,11 @@
 import { useState, useEffect} from "react"
 import { useLocation } from "react-router-dom";
 
-import MoviesSearch from "./MoviesSearch";
+import MoviesSearch from "../../components/MoviesSearch/MoviesSearch";
 import { useSearchParams } from "react-router-dom";
 import { Dna } from 'react-loader-spinner';
 import { NavItem, Container } from "./Movies.styled";
+import { toast } from "react-toastify";
 
 
 // Fetch to search movies
@@ -57,7 +58,7 @@ const Movies = () => {
 
     const onFormSubmit = (searchValue) => {
             if (searchValue === value) {
-        alert("Enter new search value!");
+        toast.error("Enter new search value!");
         return
         }
         setValue(searchValue)

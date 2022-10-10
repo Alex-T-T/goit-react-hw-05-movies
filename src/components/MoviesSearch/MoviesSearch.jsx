@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Input, SearchBtn } from './MoviesSearch.styled'
+import { toast } from "react-toastify";
 
 const MoviesSearch = ({onFormSubmit}) => {
 const [searchQuery, setSearchQuery] = useState('');
@@ -15,7 +16,7 @@ const handleChange = (event) => {
         event.preventDefault();
 
         if (searchQuery.trim() === '') {
-            alert('Enter search value')
+            toast.error('Enter search value')
             return
         } 
 
