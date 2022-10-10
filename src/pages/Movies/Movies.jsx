@@ -6,18 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import { Dna } from 'react-loader-spinner';
 import { NavItem, Container } from "./Movies.styled";
 import { toast } from "react-toastify";
-
-
-// Fetch to search movies
-const fetchSearchMovies = async (searchQuery) => {
-    const API_KEY = '85df3ff8d6dde44e5fe9194c59be3b9a';
-    const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${searchQuery}&api_key=${API_KEY}`)
-        if (response.ok) {
-            return response.json();
-            }
-            return Promise.reject(new Error(`We have a problem`))
-        }
-
+import { getSearchMovies } from "utils";
 
 const Movies = () => {
 
@@ -32,7 +21,6 @@ const Movies = () => {
     console.log('filter =>', filter);
 
     useEffect(() => {
-        
         // console.log(movies)
         // console.log('Refresh movies')
         window.localStorage.setItem('movies', JSON.stringify(movies))
@@ -46,7 +34,7 @@ const Movies = () => {
 
         setIsLoading(true);
 
-        fetchSearchMovies(value)
+        getSearchMovies(value)
             .then((response) => {
                 setMovies(response)
                 setIsLoading(false)

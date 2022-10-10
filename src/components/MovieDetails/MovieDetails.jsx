@@ -2,18 +2,7 @@ import { useState, useEffect, Suspense } from "react";
 import { Outlet, useParams, useLocation} from "react-router-dom";
 import { TiArrowBack } from 'react-icons/ti'
 import { Container, NavItem, Wrapper, Title, Text, AdditionalLinks } from "./MovieDetails.styled";
-import { FormatDate } from "utils/FormatDate";
-import { FormatUserScore } from "utils/FormatUserScore";
-import { CreatePosterUrl } from "utils/CreatePosterUrl";
-
-const fetchMovieById = async (id) => {
-    const API_KEY = '85df3ff8d6dde44e5fe9194c59be3b9a';
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)
-        if (response.ok) {
-            return response.json();
-            }
-            return Promise.reject(new Error(`We have a problem`))
-        }
+import { FormatDate, FormatUserScore, CreatePosterUrl, getMovieById } from "utils";
 
 const MovieDetails = () => {
     const [movie, setMovie] = useState({});
@@ -21,7 +10,7 @@ const MovieDetails = () => {
     const location = useLocation();
 
     useEffect(() => {
-        fetchMovieById(Number(movieId))
+        getMovieById(Number(movieId))
             .then(setMovie)
         .catch(error => {
         Promise.reject(new Error(`${error.message}`))
