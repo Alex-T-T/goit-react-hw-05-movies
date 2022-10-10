@@ -1,6 +1,7 @@
 import { ImHome } from "react-icons/im";
 import { BiMoviePlay } from 'react-icons/bi';
 import { Header, NavItem, Text } from "./AppBar.styled";
+// import PropTypes from 'prop-types';
 
 
 const navItems = [
@@ -18,3 +19,9 @@ const AppBar = () => {
 }
 
 export default AppBar
+
+// AppBar.propTypes = {
+//     href: PropTypes.string.isRequired,
+//     text: PropTypes.string.isRequired,
+//     icon: PropTypes.node.isRequired,
+// }
