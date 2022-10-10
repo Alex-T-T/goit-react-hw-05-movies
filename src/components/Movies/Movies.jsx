@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import MoviesSearch from "./MoviesSearch";
 import { useSearchParams } from "react-router-dom";
 import { Dna } from 'react-loader-spinner';
-import { NavItem } from "./Movies.styled";
+import { NavItem, Container } from "./Movies.styled";
 
 
 // Fetch to search movies
@@ -66,7 +66,7 @@ const Movies = () => {
     }
 
     return (
-        <>
+        <Container>
             <MoviesSearch onFormSubmit={ onFormSubmit} />
             {isLoading && <div>
                 <p>Loading... Please wait</p> 
@@ -79,7 +79,7 @@ const Movies = () => {
                     })
                     : <p>Change your request</p>}
                 </ul>}
-        </>
+        </Container>
     )
 }
 

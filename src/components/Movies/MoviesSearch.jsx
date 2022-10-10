@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Input, SearchBtn } from './MoviesSearch.styled'
 
 const MoviesSearch = ({onFormSubmit}) => {
 const [searchQuery, setSearchQuery] = useState('');
@@ -30,7 +31,7 @@ const handleChange = (event) => {
 
     return <form onSubmit={handleSubmit}>
             <label>
-                <input
+                <Input
                     type="text"
                     autoComplete="off"
                     autoFocus
@@ -40,7 +41,7 @@ const handleChange = (event) => {
                     onChange={handleChange}
                 />
             </label>
-            <button type="submit">Search</button>
+            <SearchBtn type="submit">Search</SearchBtn>
         </form>
 }
 

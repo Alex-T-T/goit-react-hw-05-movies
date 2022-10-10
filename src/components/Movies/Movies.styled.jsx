@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
+export const Container = styled('main')`
+text-align: center;
+margin-left: auto;
+margin-right: auto;
+`
 
 export const NavItem = styled(NavLink)`
 display: block;
@@ -12,10 +17,7 @@ color: #000;
 
     :hover,
     :focus-visible {
+        background: linear-gradient(to right, #1488cc, #2b32b2);
         color: #fff;
-        background: #FFEEEE;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #DDEFBB, #FFEEEE);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #DDEFBB, #FFEEEE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
     }
 `
