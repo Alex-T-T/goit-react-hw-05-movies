@@ -3,7 +3,7 @@ import { Outlet, useParams, useLocation} from "react-router-dom";
 import { TiArrowBack } from 'react-icons/ti'
 import { Container, NavItem, Wrapper, Title, Text, AdditionalLinks } from "./MovieDetails.styled";
 import { FormatDate, FormatUserScore, CreatePosterUrl, getMovieById } from "utils";
-import PropTypes from 'prop-types'
+
 
 const MovieDetails = () => {
     const [movie, setMovie] = useState({});
@@ -50,21 +50,3 @@ const MovieDetails = () => {
 }
 
 export default MovieDetails;
-
-MovieDetails.propTypes = {
-    movieId: PropTypes.string,
-    movie: PropTypes.shape({
-        cast: PropTypes.arrayOf(
-            PropTypes.shape({
-                title: PropTypes.string.isRequired,
-                poster_path: PropTypes.string.isRequired,
-                vote_average: PropTypes.number.isRequired,
-                overview: PropTypes.string.isRequired,
-                genres: PropTypes.arrayOf(PropTypes.shape({
-                    name: PropTypes.string.isRequired,
-                })),
-                release_date: PropTypes.string.isRequired,
-            })
-        )
-    })
-}

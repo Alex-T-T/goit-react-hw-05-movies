@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Container } from "./Cast.styled";
 import { CreateProfileUrl, getCast } from "utils";
-import  PropTypes  from 'prop-types';
 
 
 const Cast = () => {
@@ -41,17 +40,3 @@ const Cast = () => {
 }
 
 export default Cast;
-
-Cast.propTypes = {
-    movieId: PropTypes.string,
-    response: PropTypes.shape({
-        cast: PropTypes.arrayOf(
-            PropTypes.shape({
-                id: PropTypes.string.isRequired,
-                profile_path: PropTypes.string.isRequired,
-                original_name: PropTypes.string.isRequired,
-                character: PropTypes.string.isRequired,
-            })
-      )
-    })
-}

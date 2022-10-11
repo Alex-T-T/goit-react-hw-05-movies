@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import {RiErrorWarningLine} from 'react-icons/ri'
 import { Title, Text, Item } from "./Reviews.styled";
 import { getRewiews } from "utils";
-import  PropTypes  from 'prop-types';
 
 
 const Reviews = () => {
@@ -44,16 +43,3 @@ const Reviews = () => {
 }
 
 export default Reviews;
-
-Reviews.propTypes = {
-    movieId: PropTypes.string,
-    response: PropTypes.shape({
-        results: PropTypes.arrayOf(
-            PropTypes.shape({
-                id: PropTypes.string.isRequired,
-                author: PropTypes.string.isRequired,
-                content: PropTypes.string.isRequired,
-            })
-        )
-    })
-}
