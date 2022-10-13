@@ -18,14 +18,11 @@ const Reviews = () => {
             })
     },[movieId])
 
-    // console.log(movieId)
-
     if (!response) {
         return null
     }
 
     const { results } = response
-    // console.log('response =>', response)
 
     return (<ul>
         {results.length !== 0

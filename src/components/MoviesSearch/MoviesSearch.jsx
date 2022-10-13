@@ -42,4 +42,5 @@ export default MoviesSearch;
 
 MoviesSearch.propTypes = {
     onFormSubmit: PropTypes.func,
+    value: PropTypes.string,
 }

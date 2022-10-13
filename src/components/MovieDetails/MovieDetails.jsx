@@ -13,8 +13,8 @@ const MovieDetails = () => {
     useEffect(() => {
         getMovieById(Number(movieId))
             .then(setMovie)
-        .catch(error => {
-        Promise.reject(new Error(`${error.message}`))
+            .catch(error => {
+            Promise.reject(new Error(`${error.message}`))
     } )
     }, [movieId])
 

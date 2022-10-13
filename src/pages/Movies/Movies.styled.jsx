@@ -26,3 +26,11 @@ color: #000;
         color: #fff;
     }
 `
+
+export const DefaultDiv = styled('div')`
+color: blue;
+font-size: 64px;
+padding-top: 150px;
+width: 100%;
+height: 100vh;
+`
