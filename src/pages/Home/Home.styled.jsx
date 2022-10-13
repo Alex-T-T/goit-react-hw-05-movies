@@ -5,6 +5,8 @@ export const Container = styled('main')`
 text-align: center;
 margin-left: auto;
 margin-right: auto;
+border-radius: 8px;
+border-bottom: 2px solid blue;
 `
 
 
@@ -12,7 +14,7 @@ export const NavItem = styled(NavLink)`
 display: block;
 width: 300px;
 padding: 8px;
-border-radius: 4px;
+border-radius: 8px;
 text-decoration: none;
 color: #000;
 

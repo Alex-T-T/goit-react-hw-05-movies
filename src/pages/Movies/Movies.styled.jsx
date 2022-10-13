@@ -2,9 +2,14 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 export const Container = styled('main')`
+display: flex;
+flex-direction: column;
+align-items: center;
 text-align: center;
 margin-left: auto;
 margin-right: auto;
+width: 100%;
+height: 100%;
 `
 
 export const NavItem = styled(NavLink)`
