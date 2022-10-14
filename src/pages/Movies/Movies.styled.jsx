@@ -28,9 +28,21 @@ color: #000;
 `
 
 export const DefaultDiv = styled('div')`
+position: relative;
 color: blue;
 font-size: 64px;
-padding-top: 150px;
+width: 100%;
+height: 100vh;
+`
+
+export const Text = styled('p')`
+position: absolute;
+top:50%;
+left:50%;
+transform:translate(-50%, -50%);
+`
+
+export const Img = styled('img')`
 width: 100%;
 height: 100vh;
 `
