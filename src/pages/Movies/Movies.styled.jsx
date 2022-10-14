@@ -36,6 +36,7 @@ height: 100vh;
 `
 
 export const Text = styled('p')`
+font-size: 36px;
 position: absolute;
 top:50%;
 left:50%;
